@@ -14,6 +14,7 @@ import { UsersComponent } from './users/users.component';
 import { OrdersComponent } from './orders/orders.component';
 import { WorkersComponent } from './workers/workers.component';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     AppRoutingModule,
     BrowserModule,
+    BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
     MatButtonToggleModule,

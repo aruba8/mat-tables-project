@@ -2,14 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UsersComponent } from './users.component';
 import { UsersGridComponent } from './users-grid/users-grid.component';
-// import {UserEditComponent} from './user-edit/user-edit.component';
+import { UserItemComponent } from './user-item/user-item.component';
 
 const usersRoutes: Routes = [
   {
     path: '', component: UsersComponent, children: [
       {path: '', component: UsersGridComponent},
-      // {path: ':id/edit', component: UserEditComponent},
-      // {path: 'new', component: UserEditComponent}
+      {path: ':id/cart', component: UserItemComponent},
     ]
   }
 ];

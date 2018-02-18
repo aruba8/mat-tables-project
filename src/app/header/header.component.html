@@ -1,0 +1,13 @@
+<mat-toolbar class="toolbar" color="primary">
+  <button mat-button routerLink="/">
+    {{title}}
+  </button>
+
+  <span class="fill-remaining-space"></span>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button mat-button routerLink="/users">Users</button>
+    <button mat-button routerLink="/workers">Workers</button>
+    <button mat-button routerLink="/orders">Orders</button>
+  </div>
+</mat-toolbar>
+<router-outlet></router-outlet>

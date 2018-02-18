@@ -1,3 +1,32 @@
-<p>
-  {{user.first_name}}
-</p>
+<mat-card class="user-card">
+  <mat-card-header>
+    <mat-card-title>User Card</mat-card-title>
+    <mat-card-subtitle>id: {{user.id}}</mat-card-subtitle>
+  </mat-card-header>
+  <form [formGroup]="userFormGroup">
+    <mat-card-content>
+      <div class="form-container">
+        <mat-form-field class="form-full-width">
+          <input matInput placeholder="First Name" id="firstName" name="firstName" formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field class="form-full-width">
+          <input matInput placeholder="Middle Name" id="middleName" name="middleName" formControlName="middleName">
+        </mat-form-field>
+        <mat-form-field class="form-full-width">
+          <input matInput placeholder="Last Name" id="lastName" name="lastName" formControlName="lastName">
+        </mat-form-field>
+        <mat-form-field class="form-full-width">
+          <input matInput placeholder="Email" type="email" id="email" name="email" formControlName="email">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="warn"
+              type="submit"
+              (click)="onSaveUser()"
+              [disabled]="!userFormGroup.valid">SAVE
+      </button>
+      <button mat-button (click)="onBack()">BACK</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

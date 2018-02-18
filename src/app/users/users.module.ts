@@ -5,8 +5,16 @@ import { CommonModule } from '@angular/common';
 import { UsersComponent } from './users.component';
 import { UsersService } from './users.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MatButtonModule, MatInputModule, MatSidenavModule, MatTableModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatInputModule,
+  MatSidenavModule,
+  MatSnackBarModule,
+  MatTableModule
+} from '@angular/material';
 import { UserItemComponent } from './user-item/user-item.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -16,12 +24,16 @@ import { UserItemComponent } from './user-item/user-item.component';
       MatTableModule,
       MatInputModule,
       MatSidenavModule,
-      MatButtonModule
+      MatButtonModule,
+      MatCardModule,
+      MatInputModule,
+      ReactiveFormsModule,
+      MatSnackBarModule
     ],
     declarations: [
       UsersGridComponent,
       UsersComponent,
-      UserItemComponent
+      UserItemComponent,
     ],
     providers: [
       UsersService

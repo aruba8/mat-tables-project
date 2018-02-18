@@ -38,7 +38,7 @@ export class UsersGridComponent implements OnInit, OnDestroy {
   }
 
   openUser(id: string) {
-    this.router.navigate([id, 'cart'], {relativeTo: this.route});
+    this.router.navigate([id, 'card'], {relativeTo: this.route});
 
   }
 

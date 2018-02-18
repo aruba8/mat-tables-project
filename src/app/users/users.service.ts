@@ -26,4 +26,9 @@ export class UsersService {
   getUser(id: string) {
     return this.httpClient.get<UserModel>(this.usersEndPoint + id + '/');
   }
+
+  updateUser(user: UserModel) {
+    return this.httpClient.put(this.usersEndPoint + user.id + '/', user);
+  }
+
 }

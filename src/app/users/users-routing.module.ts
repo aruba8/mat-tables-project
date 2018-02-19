@@ -9,6 +9,7 @@ const usersRoutes: Routes = [
     path: '', component: UsersComponent, children: [
       {path: '', component: UsersGridComponent},
       {path: ':id/card', component: UserItemComponent},
+      {path: 'new', component: UserItemComponent},
     ]
   }
 ];

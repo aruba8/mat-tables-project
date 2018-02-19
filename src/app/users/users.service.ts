@@ -31,4 +31,12 @@ export class UsersService {
     return this.httpClient.put(this.usersEndPoint + user.id + '/', user);
   }
 
+  addUser(user: UserModel) {
+    return this.httpClient.post<UserModel>(this.usersEndPoint, user);
+  }
+
+  deleteUser(user: UserModel) {
+    return this.httpClient.delete(this.usersEndPoint + user.id + '/');
+  }
+
 }

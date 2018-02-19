@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import {
   MatButtonModule,
   MatCardModule,
+  MatDialogModule,
   MatInputModule,
-  MatSidenavModule,
-  MatSnackBarModule,
+  MatSidenavModule, MatSnackBarModule,
   MatTableModule
 } from '@angular/material';
 import { UserItemComponent } from './user-item/user-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmationDialogComponent } from './user-item/confirmation-dialog/confirmation-dialog.component';
+import { SnackBarComponent } from './user-item/snack-bar/snack-bar.component';
 
 @NgModule({
     imports: [
@@ -28,15 +30,22 @@ import { ReactiveFormsModule } from '@angular/forms';
       MatCardModule,
       MatInputModule,
       ReactiveFormsModule,
+      MatDialogModule,
       MatSnackBarModule
     ],
     declarations: [
       UsersGridComponent,
       UsersComponent,
       UserItemComponent,
+      ConfirmationDialogComponent,
+      SnackBarComponent,
     ],
     providers: [
       UsersService
+    ],
+    entryComponents: [
+      ConfirmationDialogComponent,
+      SnackBarComponent
     ]
   }
 )

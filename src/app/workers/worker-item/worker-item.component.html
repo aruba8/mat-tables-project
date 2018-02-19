@@ -1,0 +1,38 @@
+<mat-card class="user-card">
+  <mat-card-header>
+    <mat-card-title>Worker Card</mat-card-title>
+    <mat-card-subtitle>id: {{worker.id}}</mat-card-subtitle>
+  </mat-card-header>
+  <form [formGroup]="workerFormGroup">
+    <mat-card-content>
+      <div class="form-container">
+        <mat-form-field class="form-full-width">
+          <input matInput placeholder="Name" id="name" name="name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field class="form-full-width">
+          <mat-select
+            placeholder="Worker Type"
+            name="worker_type"
+            formControlName="workerType"
+            [(ngModel)]="selectedType"
+          >
+            <mat-option
+              *ngFor="let workerType of workerTypes"
+              [value]="workerType.id"
+            >{{workerType.worker_type_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="onBack()">BACK</button>
+      <button mat-raised-button color="primary"
+              type="submit"
+              (click)="onSaveWorker()"
+              [disabled]="!workerFormGroup.valid">SAVE
+      </button>
+      <button mat-raised-button color="warn" (click)="onDelete()" *ngIf="editMode">DELETE</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

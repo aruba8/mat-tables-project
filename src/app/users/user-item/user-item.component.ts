@@ -88,7 +88,6 @@ export class UserItemComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {'data': this.user});
     dialogRef.afterClosed().subscribe(
       (result) => {
-        console.log(result);
         if (result === true) {
           this.usersService.deleteUser(this.user).subscribe(
             () => this.router.navigate(['/users'])

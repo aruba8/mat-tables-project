@@ -21,12 +21,12 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
+      <button mat-button (click)="onBack()">BACK</button>
       <button mat-raised-button color="primary"
               type="submit"
               (click)="onSaveUser()"
               [disabled]="!userFormGroup.valid">SAVE
       </button>
-      <button mat-button (click)="onBack()">BACK</button>
       <button mat-raised-button color="warn" (click)="onDelete()" *ngIf="editMode">DELETE</button>
     </mat-card-actions>
   </form>

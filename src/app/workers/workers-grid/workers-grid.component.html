@@ -1,3 +1,29 @@
-<p>
-  workers-grid works!
-</p>
+<div class="grid-container mat-elevation-z8">
+  <div class="grid-header">
+    <button mat-button color="primary" (click)="onAddWorker()">Add Worker</button>
+  </div>
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id.</mat-header-cell>
+      <mat-cell *matCellDef="let worker">{{worker.id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name.</mat-header-cell>
+      <mat-cell *matCellDef="let worker">{{worker.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="worker_type">
+      <mat-header-cell *matHeaderCellDef> Worker Type.</mat-header-cell>
+      <mat-cell *matCellDef="let worker">{{worker.worker_type.worker_type_name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let worker">
+        <button mat-button color="primary" (click)="openWorker(worker.id)">Edit</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+</div>

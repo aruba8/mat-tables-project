@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('tables-project App', () => {
+describe('mat-tables-project App', () => {
   let page: AppPage;
 
   beforeEach(() => {

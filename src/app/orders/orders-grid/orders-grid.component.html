@@ -1,3 +1,46 @@
-<p>
-  orders-grid works!
-</p>
+<div class="grid-container mat-elevation-z8">
+  <div class="grid-header">
+    <button mat-button color="primary" (click)="onAddOrder()">Add Order</button>
+  </div>
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id.</mat-header-cell>
+      <mat-cell *matCellDef="let order">{{order.id}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="assigned_to">
+      <mat-header-cell *matHeaderCellDef> Assigned To</mat-header-cell>
+      <mat-cell *matCellDef="let order">{{order.assigned_to}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="order_type">
+      <mat-header-cell *matHeaderCellDef>Order Type</mat-header-cell>
+      <mat-cell *matCellDef="let order">{{order.order_type}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="created_by">
+      <mat-header-cell *matHeaderCellDef>Created By</mat-header-cell>
+      <mat-cell *matCellDef="let order">{{order.created_by}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="order_date">
+      <mat-header-cell *matHeaderCellDef>Order Date</mat-header-cell>
+      <mat-cell *matCellDef="let order">{{order.order_date}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="order_status">
+      <mat-header-cell *matHeaderCellDef>Order Status</mat-header-cell>
+      <mat-cell *matCellDef="let order">{{order.order_status}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="order_description">
+      <mat-header-cell *matHeaderCellDef>Order Description</mat-header-cell>
+      <mat-cell *matCellDef="let order">{{order.order_description}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let order">
+        <button mat-button color="primary" (click)="openOrder(order.id)">Edit</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+</div>

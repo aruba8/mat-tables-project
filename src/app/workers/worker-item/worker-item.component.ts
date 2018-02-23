@@ -12,7 +12,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     styleUrls: ['./worker-item.component.css']
 })
 export class WorkerItemComponent implements OnInit {
-    selectedType: { 'id': number, 'worker_type_name': string };
+    selectedType: WorkerType;
     workerFormGroup: FormGroup;
     workerTypes: WorkerType[];
     worker: Worker;

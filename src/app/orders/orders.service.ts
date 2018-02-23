@@ -23,4 +23,8 @@ export class OrdersService {
     return this.orders;
   }
 
+  getOrder(id: string) {
+    return this.httpClient.get<Order>(this.ordersEndPoint + id + '/');
+  }
+
 }

@@ -7,23 +7,30 @@
     <mat-card-content>
       <div class="form-container">
         <mat-form-field class="form-full-width">
-          <input matInput placeholder="Date" id="orderDate" name="order_date" formControlName="orderDate">
+          <input matInput [readonly]="true" placeholder="Created By" id="createdBy" name="createdBy"
+                 formControlName="createdBy">
         </mat-form-field>
 
         <mat-form-field class="form-full-width">
-          <input matInput placeholder="Description" id="orderDescription" name="order_description" formControlName="orderDescription">
+          <input matInput [readonly]="true" type="datetime" placeholder="Date" id="orderDate" name="order_date"
+                 formControlName="orderDate">
         </mat-form-field>
+
+        <mat-form-field class="form-full-width">
+          <textarea matInput matAutosizeMinRows="1" matTextareaAutosize matAutosizeMaxRows="3" placeholder="Description"
+                    id="orderDescription" name="order_description"
+                    formControlName="orderDescription"></textarea>
+        </mat-form-field>
+
         <mat-form-field class="form-full-width">
           <mat-select
             placeholder="Order Status"
             name="order_status"
             formControlName="orderStatus"
-            [(ngModel)]="selectedOrderStatus"
-          >
+            [(ngModel)]="selectedOrderStatus">
             <mat-option
               *ngFor="let orderStatus of orderStatuses"
-              [value]="orderStatus.id"
-            >{{orderStatus.name}}
+              [value]="orderStatus.id">{{orderStatus.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -31,27 +38,39 @@
         <mat-form-field class="form-full-width">
           <mat-select
             placeholder="Assigned To"
-            name="assigned_to"
+            name="assignedTo"
             formControlName="assignedTo"
-            [(ngModel)]="selectedOrderStatus"
-          >
+            [(ngModel)]="selectedWorker">
             <mat-option
               *ngFor="let worker of workers"
-              [value]="orderStatus.id"
-            >{{orderStatus.name}}
+              [value]="worker.id">{{worker.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
+
+        <mat-form-field class="form-full-width">
+          <mat-select
+            placeholder="Order Type"
+            name="orderType"
+            formControlName="orderType"
+            [(ngModel)]="selectedOrderType">
+            <mat-option
+              *ngFor="let orderType of orderTypes"
+              [value]="orderType.id">{{orderType.order_type_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
       </div>
     </mat-card-content>
-    <!--<mat-card-actions>-->
-      <!--<button mat-button (click)="onBack()">BACK</button>-->
-      <!--<button mat-raised-button color="primary"-->
-              <!--type="submit"-->
-              <!--(click)="onSaveWorker()"-->
-              <!--[disabled]="!workerFormGroup.valid">SAVE-->
-      <!--</button>-->
-      <!--<button mat-raised-button color="warn" (click)="onDelete()" *ngIf="editMode">DELETE</button>-->
-    <!--</mat-card-actions>-->
+    <mat-card-actions>
+      <button mat-button (click)="onBack()">BACK</button>
+      <button mat-raised-button color="primary"
+              type="submit"
+              (click)="onSaveOrder()"
+              [disabled]="!orderFormGroup.valid">SAVE
+      </button>
+      <button mat-raised-button color="warn" (click)="onDelete()" *ngIf="editMode">DELETE</button>
+    </mat-card-actions>
   </form>
 </mat-card>

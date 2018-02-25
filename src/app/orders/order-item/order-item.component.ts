@@ -7,6 +7,8 @@ import { WorkersService } from '../../workers/workers.service';
 import { Worker } from '../../workers/worker.model';
 import { Subscription } from 'rxjs/Subscription';
 import { UserModel } from '../../users/users.model';
+import { ConfirmationDialogComponent } from '../../shared/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-order-item',
@@ -40,7 +42,9 @@ export class OrderItemComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private ordersService: OrdersService,
-              private workersService: WorkersService) {
+              private workersService: WorkersService,
+              private snackBar: MatSnackBar,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -74,13 +78,10 @@ export class OrderItemComponent implements OnInit, OnDestroy {
 
 
   initForm() {
-    this.order = new Order(-1, {
-      'id': -1,
-      'first_name': '',
-      'last_name': '',
-      'email': '',
-      'middle_name': ''
-    }, new OrderType(-1, ''), new UserModel(-1, '', '', '', ''), new Date(), 'NE', '');
+    this.order = new Order(-1, new Worker(-1, '', {
+      id: -1,
+      worker_type_name: ''
+    }), new OrderType(-1, ''), new UserModel(-1, '', '', '', ''), new Date(), 'NE', '');
     this.populateForm(this.order);
     if (this.editMode) {
       this.ordersService.getOrder(this.orderId).subscribe(
@@ -94,7 +95,6 @@ export class OrderItemComponent implements OnInit, OnDestroy {
 
   populateForm(order: Order) {
     const orderStatus = this.findOrderStatus(order.order_status);
-    console.log(order);
     const dateOptions = {
       year: 'numeric',
       month: 'numeric',
@@ -118,14 +118,57 @@ export class OrderItemComponent implements OnInit, OnDestroy {
   }
 
   onBack() {
+    this.router.navigate(['orders']);
   }
 
   onSaveOrder() {
-    console.log(this.orderFormGroup);
+    this.order.order_status = this.orderFormGroup.value.orderStatus;
+    this.order.assigned_to = this.getSelectedWorker(this.orderFormGroup.value.assignedTo);
+    this.order.order_description = this.orderFormGroup.value.orderDescription;
+    this.order.order_type = this.getSelectedOrderType(this.orderFormGroup.value.orderType);
+    console.log(this.order);
+
+    this.ordersService.updateOrder(this.order).subscribe(
+      () => {
+        this.openSnackBar('Order saved', 'close', 'snack');
+      },
+      (error) => {
+        this.openSnackBar('Something went wrong on order saving', 'close', 'snack');
+      }
+    );
   }
 
   onDelete() {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        message: 'order with id:' + this.order.id,
+        entityName: 'order'
+      }
+    });
+    dialogRef.afterClosed().subscribe(
+      (result) => {
+        if (result === true) {
+          this.ordersService.deleteOrder(this.order).subscribe(() => {
+            this.router.navigate(['orders']);
+          });
+        }
+      }
+    );
   }
 
+  private openSnackBar(message: string, action: string, className: string) {
+    this.snackBar.open(message, action, {
+      duration: 2500,
+      extraClasses: [className]
+    });
+  }
+
+  getSelectedWorker(id: number) {
+    return this.workers.filter(x => x.id === id)[0];
+  }
+
+  getSelectedOrderType(id: number) {
+    return this.orderTypes.filter(x => x.id === id)[0];
+  }
 
 }

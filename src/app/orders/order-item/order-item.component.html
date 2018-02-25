@@ -6,7 +6,7 @@
   <form [formGroup]="orderFormGroup">
     <mat-card-content>
       <div class="form-container">
-        <mat-form-field class="form-full-width">
+        <mat-form-field class="form-full-width" *ngIf="editMode">
           <input matInput [readonly]="true" placeholder="Created By" id="createdBy" name="createdBy"
                  formControlName="createdBy">
         </mat-form-field>

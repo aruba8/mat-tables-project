@@ -5,16 +5,19 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import {
-  MatButtonModule, MatButtonToggleModule, MatDividerModule, MatIconModule, MatMenuModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatDividerModule,
+  MatIconModule,
+  MatMenuModule,
   MatToolbarModule
 } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeComponent } from './home/home.component';
-import { UsersComponent } from './users/users.component';
-import { OrdersComponent } from './orders/orders.component';
-import { WorkersComponent } from './workers/workers.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedComponent } from './shared/shared.component';
+import { SnackBarComponent } from './shared/snack-bar/snack-bar.component';
 
 
 @NgModule({
@@ -33,10 +36,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatDividerModule,
     MatIconModule,
     MatMenuModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

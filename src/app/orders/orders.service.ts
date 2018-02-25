@@ -41,4 +41,12 @@ export class OrdersService {
     return this.orderTypes;
   }
 
+  deleteOrder(order: Order) {
+    return this.httpClient.delete(this.ordersEndPoint + order.id + '/');
+  }
+
+  updateOrder(order: Order) {
+    return this.httpClient.patch(this.ordersEndPoint + order.id + '/', order);
+  }
+
 }

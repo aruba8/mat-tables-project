@@ -123,9 +123,9 @@ export class OrderItemComponent implements OnInit, OnDestroy {
 
   onSaveOrder() {
     this.order.order_status = this.orderFormGroup.value.orderStatus;
-    this.order.assigned_to = this.getSelectedWorker(this.orderFormGroup.value.assignedTo);
+    this.order.assigned_to = this.orderFormGroup.value.assignedTo;
     this.order.order_description = this.orderFormGroup.value.orderDescription;
-    this.order.order_type = this.getSelectedOrderType(this.orderFormGroup.value.orderType);
+    this.order.order_type = this.orderFormGroup.value.orderType;
     console.log(this.order);
 
     this.ordersService.updateOrder(this.order).subscribe(

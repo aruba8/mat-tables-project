@@ -44,7 +44,6 @@ import { SharedModule } from '../shared/shared.module';
       OrdersGridComponent,
       OrdersComponent,
       OrderItemComponent,
-      ConfirmationDialogComponent
     ],
     providers: [OrdersService, WorkersService],
     entryComponents: [ConfirmationDialogComponent]

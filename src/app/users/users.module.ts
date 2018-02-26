@@ -15,8 +15,9 @@ import {
 } from '@angular/material';
 import { UserItemComponent } from './user-item/user-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ConfirmationDialogComponent } from './user-item/confirmation-dialog/confirmation-dialog.component';
-import { SnackBarComponent } from './user-item/snack-bar/snack-bar.component';
+import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
+import { SnackBarComponent } from '../shared/snack-bar/snack-bar.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     imports: [
@@ -31,14 +32,13 @@ import { SnackBarComponent } from './user-item/snack-bar/snack-bar.component';
       MatInputModule,
       ReactiveFormsModule,
       MatDialogModule,
-      MatSnackBarModule
+      MatSnackBarModule,
+      SharedModule
     ],
     declarations: [
       UsersGridComponent,
       UsersComponent,
       UserItemComponent,
-      ConfirmationDialogComponent,
-      SnackBarComponent,
     ],
     providers: [
       UsersService

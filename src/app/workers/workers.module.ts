@@ -17,8 +17,8 @@ import {
 } from '@angular/material';
 import { WorkerItemComponent } from './worker-item/worker-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SnackBarComponent } from './worker-item/snack-bar/snack-bar.component';
-import { ConfirmationDialogComponent } from './worker-item/confirmation-dialog/confirmation-dialog.component';
+import { SharedModule } from '../shared/shared.module';
+import { ConfirmationDialogComponent } from '../shared/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
     imports: [
@@ -33,14 +33,13 @@ import { ConfirmationDialogComponent } from './worker-item/confirmation-dialog/c
       MatSelectModule,
       MatOptionModule,
       MatDialogModule,
-      MatSnackBarModule
+      MatSnackBarModule,
+      SharedModule
     ],
     declarations: [
       WorkersGridComponent,
       WorkersComponent,
       WorkerItemComponent,
-      SnackBarComponent,
-      ConfirmationDialogComponent
     ],
     providers: [
       WorkersService

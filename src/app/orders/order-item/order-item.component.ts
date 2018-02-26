@@ -126,14 +126,13 @@ export class OrderItemComponent implements OnInit, OnDestroy {
     this.order.assigned_to = this.orderFormGroup.value.assignedTo;
     this.order.order_description = this.orderFormGroup.value.orderDescription;
     this.order.order_type = this.orderFormGroup.value.orderType;
-    console.log(this.order);
-
     this.ordersService.updateOrder(this.order).subscribe(
       () => {
         this.openSnackBar('Order saved', 'close', 'snack');
       },
       (error) => {
         this.openSnackBar('Something went wrong on order saving', 'close', 'snack');
+        console.log(error);
       }
     );
   }

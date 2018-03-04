@@ -25,7 +25,6 @@ import { SharedModule } from '../shared/shared.module';
       CommonModule,
       HttpClientModule,
       MatTableModule,
-      MatInputModule,
       MatSidenavModule,
       MatButtonModule,
       MatCardModule,

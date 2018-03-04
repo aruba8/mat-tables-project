@@ -6,9 +6,13 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import {
   MatButtonModule,
-  MatButtonToggleModule, MatDialogModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatDialogModule,
   MatDividerModule,
+  MatFormFieldModule,
   MatIconModule,
+  MatInputModule,
   MatMenuModule,
   MatToolbarModule
 } from '@angular/material';
@@ -16,10 +20,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedComponent } from './shared/shared.component';
-import { SnackBarComponent } from './shared/snack-bar/snack-bar.component';
-import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 import { SharedModule } from './shared/shared.module';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -27,6 +30,7 @@ import { SharedModule } from './shared/shared.module';
     AppComponent,
     HeaderComponent,
     HomeComponent,
+    LoginComponent
   ],
   imports: [
     AppRoutingModule,
@@ -40,7 +44,11 @@ import { SharedModule } from './shared/shared.module';
     MatMenuModule,
     FlexLayoutModule,
     MatDialogModule,
-    SharedModule
+    SharedModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

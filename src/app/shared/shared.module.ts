@@ -18,8 +18,7 @@ import { AuthenticationService } from './authentication.service';
     ConfirmationDialogComponent
   ],
   providers: [
-    AppConfig,
-    AuthenticationService
+    AppConfig
   ],
 })
 export class SharedModule {

@@ -9,5 +9,12 @@
     <button mat-button routerLink="/workers">Workers</button>
     <button mat-button routerLink="/orders">Orders</button>
   </div>
+  <span class="fill-space"></span>
+  <div *ngIf="!isLoggedIn">
+    <button mat-button routerLink="/login">Login</button>
+  </div>
+  <div *ngIf="isLoggedIn">
+    <button mat-button (click)="logout()">Logout</button>
+  </div>
 </mat-toolbar>
 <router-outlet></router-outlet>

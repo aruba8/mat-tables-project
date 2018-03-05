@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AppConfig {
   api = new ApiConfig();
-  config = {};
+
+  config = {
+    tokenExpirationTime: 240000
+  };
 
   getConfig(): Object {
     return this.config;

@@ -18,6 +18,7 @@ class ApiConfig {
     orders: 'orders/',
     users: 'users/',
     workers: 'workers/',
+    workerTypes: 'worker_types/'
   };
 
   private baseUrls = {

@@ -8,8 +8,8 @@ import { AppConfig } from '../app.config';
 @Injectable()
 export class WorkersService {
 
-  private workersEndPoint = 'http://localhost:8000/workers/';
-  private workerTypesEndPoint = 'http://localhost:8000/worker_types/';
+  private workersEndPoint: string;
+  private workerTypesEndPoint: string;
   private workers: Worker[];
   workersChanged = new Subject<Worker[]>();
   private baseUrl: string;

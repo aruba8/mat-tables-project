@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs/Subject';
 import { Order, OrderType } from './order.model';
+import { AuthenticationService } from '../shared/authentication.service';
+import { AppConfig } from '../app.config';
 
 @Injectable()
 export class OrdersService {
@@ -9,16 +11,24 @@ export class OrdersService {
   private ordersEndPoint = 'http://localhost:8000/orders/';
   private orderTypesEndPoint = 'http://localhost:8000/order_types/';
 
-  ordersChanged = new Subject<Order[]>();
-  orderTypesChanged = new Subject<OrderType[]>();
-  orders: Order[];
-  orderTypes: OrderType[];
+  private ordersChanged = new Subject<Order[]>();
+  private orderTypesChanged = new Subject<OrderType[]>();
+  private orders: Order[];
+  private orderTypes: OrderType[];
+  private baseUrl: string;
 
-  constructor(private httpClient: HttpClient) {
+
+  constructor(private httpClient: HttpClient,
+              private authService: AuthenticationService,
+              private appConfig: AppConfig) {
+    this.baseUrl = this.appConfig.api.getBaseUrl();
+    this.ordersEndPoint = this.baseUrl + this.appConfig.api.endpoints.orders;
+    this.orderTypesEndPoint = this.baseUrl + this.appConfig.api.endpoints.orderTypes;
   }
 
   getOrders(): Order[] {
-    this.httpClient.get<Order[]>(this.ordersEndPoint).subscribe(
+    const authHeaders = this.authService.getAuthorizationHeaders();
+    this.httpClient.get<Order[]>(this.ordersEndPoint, {headers: authHeaders}).subscribe(
       (orders: Order[]) => {
         this.orders = orders;
         this.ordersChanged.next(this.orders);
@@ -28,11 +38,13 @@ export class OrdersService {
   }
 
   getOrder(id: string) {
-    return this.httpClient.get<Order>(this.ordersEndPoint + id + '/');
+    const authHeaders = this.authService.getAuthorizationHeaders();
+    return this.httpClient.get<Order>(this.ordersEndPoint + id + '/', {headers: authHeaders});
   }
 
   getOrderTypes(): OrderType[] {
-    this.httpClient.get<OrderType[]>(this.orderTypesEndPoint).subscribe(
+    const authHeaders = this.authService.getAuthorizationHeaders();
+    this.httpClient.get<OrderType[]>(this.orderTypesEndPoint, {headers: authHeaders}).subscribe(
       (orderTypes: OrderType[]) => {
         this.orderTypes = orderTypes;
         this.orderTypesChanged.next(this.orderTypes);
@@ -42,11 +54,13 @@ export class OrdersService {
   }
 
   deleteOrder(order: Order) {
-    return this.httpClient.delete(this.ordersEndPoint + order.id + '/');
+    const authHeaders = this.authService.getAuthorizationHeaders();
+    return this.httpClient.delete(this.ordersEndPoint + order.id + '/', {headers: authHeaders});
   }
 
   updateOrder(order: Order) {
-    return this.httpClient.patch(this.ordersEndPoint + order.id + '/', order);
+    const authHeaders = this.authService.getAuthorizationHeaders();
+    return this.httpClient.patch(this.ordersEndPoint + order.id + '/', order, {headers: authHeaders});
   }
 
 }

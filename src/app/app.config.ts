@@ -16,6 +16,7 @@ export class AppConfig {
 class ApiConfig {
   public endpoints = {
     orders: 'orders/',
+    orderTypes: 'order_types/',
     users: 'users/',
     workers: 'workers/',
     workerTypes: 'worker_types/'

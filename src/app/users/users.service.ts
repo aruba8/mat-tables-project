@@ -11,18 +11,17 @@ export class UsersService {
   private users: UserModel[];
   usersChanged = new Subject<UserModel[]>();
   private usersEndPoint;
-  private authHeaders;
 
   constructor(private httpClient: HttpClient,
               private appConfig: AppConfig,
               private authService: AuthenticationService) {
     const baseUrl = this.appConfig.api.getBaseUrl();
-    this.authHeaders = this.authService.getAuthorizationHeaders();
     this.usersEndPoint = baseUrl + this.appConfig.api.endpoints.users;
   }
 
   getUsers() {
-    this.httpClient.get(this.usersEndPoint, {headers: this.authHeaders}).subscribe(
+    const authHeaders = this.authService.getAuthorizationHeaders();
+    this.httpClient.get(this.usersEndPoint, {headers: authHeaders}).subscribe(
       (response: UserModel[]) => {
         this.users = response;
         this.usersChanged.next(this.users);
@@ -32,19 +31,23 @@ export class UsersService {
   }
 
   getUser(id: string) {
-    return this.httpClient.get<UserModel>(this.usersEndPoint + id + '/', {headers: this.authHeaders});
+    const authHeaders = this.authService.getAuthorizationHeaders();
+    return this.httpClient.get<UserModel>(this.usersEndPoint + id + '/', {headers: authHeaders});
   }
 
   updateUser(user: UserModel) {
-    return this.httpClient.put(this.usersEndPoint + user.id + '/', user, {headers: this.authHeaders});
+    const authHeaders = this.authService.getAuthorizationHeaders();
+    return this.httpClient.put(this.usersEndPoint + user.id + '/', user, {headers: authHeaders});
   }
 
   addUser(user: UserModel) {
-    return this.httpClient.post<UserModel>(this.usersEndPoint, user, {headers: this.authHeaders});
+    const authHeaders = this.authService.getAuthorizationHeaders();
+    return this.httpClient.post<UserModel>(this.usersEndPoint, user, {headers: authHeaders});
   }
 
   deleteUser(user: UserModel) {
-    return this.httpClient.delete(this.usersEndPoint + user.id + '/', {headers: this.authHeaders});
+    const authHeaders = this.authService.getAuthorizationHeaders();
+    return this.httpClient.delete(this.usersEndPoint + user.id + '/', {headers: authHeaders});
   }
 
 }

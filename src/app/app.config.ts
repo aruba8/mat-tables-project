@@ -5,7 +5,7 @@ export class AppConfig {
   api = new ApiConfig();
 
   config = {
-    tokenExpirationTime: 240000
+    tokenExpirationTime: 300000
   };
 
   getConfig(): Object {

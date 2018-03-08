@@ -64,18 +64,24 @@ export class AuthenticationService {
   }
 
   refreshToken() {
-    this.httpClient.post(this.baseUrl + 'api-token-refresh/',
-      JSON.stringify({token: this.token}), this.httpOptions).subscribe(
-      (response: any) => {
-        this.token = response.token;
-        localStorage.setItem('token', this.token);
-      }
-    );
+    if (this.token) {
+      this.httpClient.post(this.baseUrl + 'api-token-refresh/',
+        JSON.stringify({token: this.token}), this.httpOptions).subscribe(
+        (response: any) => {
+          this.token = response.token;
+          localStorage.setItem('token', this.token);
+        }, (error) => {
+          if (error.status === 400) {
+            localStorage.removeItem('token');
+          }
+        }
+      );
+    }
   }
 
   autoRefresh() {
     setTimeout(this.autoRefresh.bind(this), this.appConfig.config.tokenExpirationTime);
-    if (this.token) {
+    if (this.token !== null && this.token !== undefined) {
       this.refreshToken();
     }
   }

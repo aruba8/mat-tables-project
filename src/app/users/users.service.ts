@@ -37,7 +37,7 @@ export class UsersService {
 
   updateUser(user: UserModel) {
     const authHeaders = this.authService.getAuthorizationHeaders();
-    return this.httpClient.put(this.usersEndPoint + user.id + '/', user, {headers: authHeaders});
+    return this.httpClient.patch(this.usersEndPoint + user.id + '/', user, {headers: authHeaders});
   }
 
   addUser(user: UserModel) {

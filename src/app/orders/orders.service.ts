@@ -8,11 +8,11 @@ import { AppConfig } from '../app.config';
 @Injectable()
 export class OrdersService {
 
-  private ordersEndPoint = 'http://localhost:8000/orders/';
-  private orderTypesEndPoint = 'http://localhost:8000/order_types/';
+  private ordersEndPoint;
+  private orderTypesEndPoint;
 
-  private ordersChanged = new Subject<Order[]>();
-  private orderTypesChanged = new Subject<OrderType[]>();
+  ordersChanged = new Subject<Order[]>();
+  orderTypesChanged = new Subject<OrderType[]>();
   private orders: Order[];
   private orderTypes: OrderType[];
   private baseUrl: string;
